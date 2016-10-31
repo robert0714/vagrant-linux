@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Marc Zottner
+  description: Advanced role for Red Hat JBoss EAP 6 and 7
+  license: license (Apache)
+  min_ansible_version: 2.1.1.0
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+  - cloud
+  - development
+  - packaging
+  - system
+  - java
+  - jboss
+  - common
+
+# Several Red Hat JBoss EAP instances could be setup on the same host (cf. https://docs.ansible.com/ansible/playbooks_roles.html#task-include-files-and-encouraging-reuse)
+allow_duplicates: yes
+
+# Empty as otherwise the Galaxy import does not work as expected.
+dependencies:
+  - role: Maarc.rh-jboss-common

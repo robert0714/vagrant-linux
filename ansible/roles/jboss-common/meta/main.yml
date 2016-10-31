@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Marc Zottner
+  description: Common prerequisites for Red Hat JBoss middleware products.
+  license: license (Apache)
+  min_ansible_version: 2.1.1.0
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+  - cloud
+  - development
+  - packaging
+  - system
+  - java
+  - jboss
+  - common
+
+dependencies: []
+
+# This role is only installed once per host (cf. https://docs.ansible.com/ansible/playbooks_roles.html#task-include-files-and-encouraging-reuse)
+allow_duplicates: no
