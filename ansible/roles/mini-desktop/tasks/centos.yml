@@ -1,0 +1,44 @@
+- name: X Window System is present
+  yum: name="@^basic-desktop" state=present 
+  ignore_errors: yes
+  tags: [mini-desktop]
+
+- name:  gnome-classic-session is present
+  action: yum name="{{ item }}" state=latest
+  with_items:
+     - gnome-classic-session
+     - gnome-terminal
+     - nautilus-open-terminal
+     - control-center
+     - liberation-mono-fonts
+     - xrdp
+     - tigervnc-server
+  ignore_errors: yes
+  tags: [mini-desktop]
+
+- name: xrdp 預設啟動
+  shell: systemctl enable xrdp.service
+  ignore_errors: yes
+  tags:  [mini-desktop]
+
+- name: 設定 selinux 給予權限
+  shell: chcon --type=bin_t /usr/sbin/xrdp
+  ignore_errors: yes
+  tags:  [mini-desktop]
+
+- name: 設定 selinux 給予權限
+  shell: chcon --type=bin_t /usr/sbin/xrdp-sesman
+  ignore_errors: yes
+  tags:  [mini-desktop]
+
+- name: xrdp Daemon is reloaded
+  command: systemctl daemon-reload
+  tags: [common]
+
+
+- name: Centos xrdp service is restarted
+  service:
+    name: xrdp
+    state: restarted
+  tags: [common]
+  
