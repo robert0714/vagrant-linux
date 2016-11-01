@@ -20,6 +20,3 @@ galaxy_info:
 # Several Red Hat JBoss EAP instances could be setup on the same host (cf. https://docs.ansible.com/ansible/playbooks_roles.html#task-include-files-and-encouraging-reuse)
 allow_duplicates: yes
 
-# Empty as otherwise the Galaxy import does not work as expected.
-#dependencies:
-#  - role: Maarc.rh-jboss-common
