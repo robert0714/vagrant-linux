@@ -8,4 +8,4 @@
     - docker-compose
     - jboss-common
     - jboss-eap
-    - mini-desktop
+#    - mini-desktop
