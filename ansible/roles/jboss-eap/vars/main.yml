@@ -1,4 +1,5 @@
 ---
+jboss_eap_golden_image_name:jboss-eap-7.0.0.zip
 
 # Directory containing the unpacked golden image.
 jboss_home: "{{ jboss.user_home }}/{{ jboss_eap_golden_image_name }}"
