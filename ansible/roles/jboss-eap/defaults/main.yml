@@ -60,3 +60,11 @@ nexus_user: ""
 nexus_password: ""
 nexus_host: ""
 nexus_repository_id: ""
+
+
+jboss_eap_golden_image_name: "jboss-eap-7.0.0",
+jboss_eap_instance_name: "petclinic",
+jboss_eap_instance_standalone_file: "standalone-full-ha.xml",
+jboss_eap_instance_port_offset: "1000",
+app_mvn_list: [ { g: "com.redhat.jboss", a: "petclinic.war", v: "1.0", e: "war" } ],
+cli_list: { "add_datasource.cli", "add_mod_cluster_7.cli"}
