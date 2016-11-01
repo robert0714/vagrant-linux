@@ -4,10 +4,10 @@ Vagrant.configure(2) do |config|
   else
     config.vm.synced_folder ".", "/vagrant"
   end
-  config.vm.define "cd" do |d| 
+  config.vm.define "eip" do |d| 
     d.vm.box = "centos/7" 
 #    d.vm.box ="ubuntu/trusty64" 
-    d.vm.hostname = "cd"
+    d.vm.hostname = "eip"
 #    d.vm.network "public_network", bridge: "eno4", ip: "192.168.57.27", auto_config: "false", netmask: "255.255.255.0" , gateway: "192.168.57.1"
     d.vm.network "private_network", ip: "10.100.198.200"
 #   ubuntu' default gateway had problem on Vagrant
