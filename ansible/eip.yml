@@ -4,8 +4,8 @@
   roles:
     - common
     - oracle-java-develop
-    - docker
-    - docker-compose
+#    - docker
+#    - docker-compose
     - jboss-common
     - jboss-eap
 #    - mini-desktop
