@@ -1,102 +1,158 @@
-# ansiblebit.oracle-java
 
-[![License](https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat)](https://raw.githubusercontent.com/ansiblebit/oracle-java/master/LICENSE)
-[![Build Status](https://travis-ci.org/ansiblebit/oracle-java.svg?branch=master)](https://travis-ci.org/ansiblebit/oracle-java)
+williamyeh.oracle-java for Ansible Galaxy
+============
 
-[![Platform](http://img.shields.io/badge/platform-centos-932279.svg?style=flat)](#)
-[![Platform](http://img.shields.io/badge/platform-debian-a80030.svg?style=flat)](#)
-[![Platform](http://img.shields.io/badge/platform-redhat-cc0000.svg?style=flat)](#)
-[![Platform](http://img.shields.io/badge/platform-ubuntu-dd4814.svg?style=flat)](#)
+[![Build Status](https://travis-ci.org/William-Yeh/ansible-oracle-java.svg?branch=master)](https://travis-ci.org/William-Yeh/ansible-oracle-java) [![Circle CI](https://circleci.com/gh/William-Yeh/ansible-oracle-java.svg?style=shield)](https://circleci.com/gh/William-Yeh/ansible-oracle-java)
 
-[![Project Stats](https://www.openhub.net/p/ansiblebit-oracle-java/widgets/project_thin_badge.gif)](https://www.openhub.net/p/ansiblebit-oracle-java/)
+## Summary
 
-An [Ansible](http://www.ansible.com) role to setup Oracle Java Development Kit. 
+Role name in Ansible Galaxy: **[williamyeh.oracle-java](https://galaxy.ansible.com/williamyeh/oracle-java/)**
 
-DISCLAIMER: usage of any version of this role implies you have accepted the
-[Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
+This Ansible role has the following features for Oracle JDK:
 
+ - Install JDK 7 or 8 version.
+ - Install optional Java Cryptography Extensions (JCE)
+ - Install for CentOS, Debian/Ubuntu, SUSE, and Mac OS X families.
 
-## Tests
-
-| Family | Distribution | Version | Test Status |
-|:-:|:-:|:-:|:-:|
-| Debian | Debian  | Jessie    | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| Debian | Ubuntu  | Precise   | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| Debian | Ubuntu  | Yakkety   | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| Debian | Ubuntu  | Xenial    | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| Debian | Ubuntu  | Trusty    | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| Debian | Ubuntu  | Vivid     | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| Debian | Ubuntu  | Wily      | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-| RedHat | Centos  | 7         | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
-
-## Requirements
-
-- ansible == 1.9.x
-
-
-# Facts
-| variable | description |
-|:-:|:--|
-| oracle_java_installed         | fact set by this role that contains a flag that indicates if Java is installed on the host. |
-| oracle_java_version_installed | fact set by this role that contains the string of the Java version installed in the system. |
+If you prefer OpenJDK, try alternatives such as [geerlingguy.java](https://galaxy.ansible.com/geerlingguy/java/) or [smola.java](https://galaxy.ansible.com/smola/java/).
 
 
 ## Role Variables
 
-| variable | default | description |
-|:--------:|:-------:|:------------|
-| debug | undefined | flag to make role more verbose. |
-| oracle_java_set_as_default | no | make the newly installed Java the default runtime environment. |
-| oracle_java_state   | latest | the package state (see Ansible apt module for more information). |
-| oracle_java_version | 8 | the Oracle JDK version to be installed. |
-| oracle_java_version_update | 74 | the Oracle JDK version update. |
-| oracle_java_version_build | 02 | the Oracle JDK version update build number. |
-| oracle_java_version_string | 1.{{ oracle_java_version }}.0_u{{ oracle_java_version_update }} | the Java version string to verify installation against. |
-| oracle_java_os_supported variable | - | role internal variable to check if a OS family is supported or not. | 
+### Mandatory variables
+
+None.
+
+### Optional variables
 
 
-### Debian-only
+User-configurable defaults:
 
-| variable | default | description |
-|:-:|:-:|:--|
-| launchpad_ppa_webupd8_cache_valid_time | 3600 | the amount of time in seconds the apt cache is valid. |
-| oracle_java_cache_valid_time | 3600 | the amount of time in seconds the apt cache is valid. |
-| oracle_java_state   | latest | the package state (see Ansible apt module for more information). |
-| oracle_java_home | /usr/lib/jvm/java-{{ oracle_java_version }}-oracle | the location of the Java home directory. |
+```yaml
+# which version?
+java_version: 8
+
+# which subversion?
+java_subversion: 102
+
+# which directory to put the download file?
+java_download_path: /tmp
+
+# rpm/tar.gz file location:
+#   - true: download from Oracle on-the-fly;
+#   - false: copy from `{{ playbook_dir }}/files` on the control machine.
+java_download_from_oracle: true
+
+# remove temporary downloaded files?
+java_remove_download: true
+
+# set $JAVA_HOME?
+java_set_javahome: false
+
+# install JCE?
+java_install_jce: false
+```
+
+For other configurable internals, read `tasks/set-role-variables.yml` file; for example, supported `java_version`/`java_subversion` combinations.
+
+If you want to install a Java release which is not supported out-of-the-box, you have to specify the corresponding Java build number in the variable `java_build` in addition to `java_version` and `java_subversion`, e.g.
+```yaml
+---
+- hosts: all
+
+  roles:
+    - williamyeh.oracle-java
+
+  vars:
+    java_version: 8
+    java_subversion: 91
+    java_build: 14
+```
 
 
-### Redhat-only
+### Customized variables, if absolutely necessary
 
-| variable | default | description |
-|:-:|:-:|:--|
-| oracle_java_dir_source | /usr/local/src | directory where to store the RPM files. |
-| oracle_java_home | /usr/java/jdk1.{{ oracle_java_version }}.0_{{ oracle_java_version_update }} | the location of the Java home directory. |
-| oracle_java_rpm_filename | jdk-{{ oracle_java_version }}u{{ oracle_java_version_update }}-linux-x64.rpm | the filename of the RPM. |
-| oracle_java_rpm_url | http://download.oracle.com/otn-pub/java/jdk/{{ oracle_java_version }}u{{ oracle_java_version_update }}-b{{ oracle_java_version_build }}/{{ oracle_java_rpm_filename }} | the URL where the RPM can be downloaded from. |
+If you have a pre-downloaded `jdk_tarball_file` whose filename cannot be inferred successfully by `tasks/set-role-variables.yml`, you may specify it explicitly: 
+
+```yaml
+# Specify the pre-fetch filename (without tailing .tar.gz or .rpm or .dmg);
+# used in conjunction with `java_download_from_oracle: false`.
+
+jdk_tarball_file
+
+# For example, if you have a `files/jdk-7u79-linux-x64.tar.gz` locally,
+# but the filename cannot be inferred successfully by `tasks/set-role-variables.yml`,
+# you may specify the following variables in your playbook:
+#
+#    java_version:    7
+#    java_subversion: 79
+#    java_download_from_oracle: false
+#    jdk_tarball_file: jdk-7u79-linux-x64
+#
+```
+
+
+## Usage
+
+
+### Step 1: add role
+
+Add role name `williamyeh.oracle-java` to your playbook file.
+
+
+### Step 2: add variables
+
+Set vars in your playbook file.
+
+Simple example:
+
+```yaml
+---
+# file: simple-playbook.yml
+
+- hosts: all
+
+  roles:
+    - williamyeh.oracle-java
+
+  vars:
+    java_version: 8
+```
+
+
+### (Optionally) pre-fetch .rpm and .tar.gz files
+
+For some reasons, you may want to pre-fetch .rpm and .tar.gz files *before the execution of this role*, instead of downloading from Oracle on-the-fly.
+
+To do this, put the file on the `{{ playbook_dir }}/files` directory in advance, and then set the `java_download_from_oracle` variable to `false`:
+
+```yaml
+---
+# file: prefetch-playbook.yml
+
+- hosts: all
+
+  roles:
+    - williamyeh.oracle-java
+
+  vars:
+    java_version: 8
+    java_download_from_oracle: false
+```
+
+
+
+
 
 
 ## Dependencies
 
-For Debian and Ubuntu this role depends on:
-
-- ansiblebit.launchpad-ppa-webupd8
-
-
-## Playbooks
-
-    - hosts: servers
-      roles:
-         - { role: ansiblebit.oracle-java,
-             oracle_java_set_as_default: yes }
-
-Use `--skip-tags=debug` if you want to suppress debug information.
-
 
 ## License
 
-BSD
+Licensed under the Apache License V2.0. See the [LICENSE file](LICENSE) for details.
 
 
-## Author Information
+## History
 
-- [steenzout](http://github.com/steenzout)
+Rewritten from my pre-Galaxy version: [server-config-template](https://github.com/William-Yeh/server-config-template).

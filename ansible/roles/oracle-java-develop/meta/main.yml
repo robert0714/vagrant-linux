@@ -1,42 +1,41 @@
 ---
-# file: oracle-java/meta/main.yml
-#
-# meta file
-#
+# nginx/meta/main.yml
 
 galaxy_info:
-  author: Pedro Salgado
-  description: Role to install Oracle Java.
-  company: ansiblebit.org
-  license: BSD
-  min_ansible_version: 1.9.4
-  platforms:
-    - name: CentOS
-      versions:
-        - all
-        - any
-        - 7
-        - 6
-    - name: Debian
-      versions:
-        - jessie
-        - wheezy
-    - name: RedHat
-      versions:
-        - all
-        - any
-        - 7
-        - 6
-    - name: Ubuntu
-      versions:
-        - yakkety
-        - xenial
-        - vivid
-        - trusty
-        - precise
-  galaxy_tags:
-    - development
-    - java
-    - system
+    author: williamyeh
+    description: Oracle JDK 7/8 for CentOS/Debian/Ubuntu/Suse/MacOSX
+    license: Apache
 
+    min_ansible_version: 2.0.0
 
+    platforms:
+        - name: Ubuntu
+          versions:
+              - precise
+              - trusty
+        - name: Debian
+          versions:
+              - wheezy
+              - jessie
+        - name: EL
+          versions:
+              - 6
+              - 7
+        - name: opensuse
+          versions:
+              - all
+        - name: SLES
+          versions:
+              - all
+        - name: Darwin
+          versions:
+              - all
+
+    galaxy_tags:
+        - development
+        - system
+        - java
+        - jdk
+        - jvm
+
+dependencies: []

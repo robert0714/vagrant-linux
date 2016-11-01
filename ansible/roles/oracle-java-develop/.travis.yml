@@ -1,28 +1,17 @@
-language: python
-sudo: yes
+sudo: true
+os:
+    - linux
+    - osx
 
-matrix:
-  include:
-    - python: 2.7
-      env: TOXENV=py27-ansible21
-    - python: 2.7
-      env: TOXENV=py27-ansible20
-    - python: 2.7
-      env: TOXENV=py27-ansible19
+services:
+    - docker
 
-install:
-  - pip install tox
+before_install:
+    - test/travis/before_install.sh
 
 script:
-  - tox
+    - test/travis/script.sh
 
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
-
-before_cache:
-  - rm -f ${HOME}/.cache/pip/log/debug.log
-
-cache:
-  directories:
-    - ${HOME}/.cache/pip
 

@@ -1,40 +1,38 @@
 ---
-# file: oracle-java/tasks/main.yml
+# file: tasks/main.yml
+# Top-level installer for Oracle JDK.
 #
-# tasks file
-#
 
-- name: check host environment
-  include: check_environment.yml
+- name: precondition - java_version
+  fail: msg="ERROR - required variable 'java_version' missing."
+  when: java_version is not defined
 
-## include OS family specific variables
+- name: precondition - java_subversion
+  fail: msg="ERROR - required variable 'java_subversion' missing."
+  when: java_subversion is not defined
 
-- name: include OS family/distribution specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "../defaults/{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
-    - "../defaults/{{ ansible_distribution | lower }}.yml"
-    - "../defaults/{{ ansible_os_family | lower }}.yml"
+- name: precondition - java_install_jce
+  fail: msg="ERROR - required variable 'java_install_jce' missing."
+  when: java_install_jce is not defined
 
-- include: debug.yml
-  when: debug | default(false)
-  tags: debug
+- include: set-role-variables.yml
 
-## include OS family specific task file
 
-- name: if darwin/macosx, include distribution specific task file
-  include: "darwin/macosx.yml"
-  when: ansible_os_family | lower == 'darwin' and ansible_distribution | lower == 'macosx'
 
-- name: if debian, include family specific task file
-  include: "debian/main.yml"
-  when: ansible_os_family | lower == 'debian'
+- name: install libselinux-python binary for Ansible to work
+  yum: name=libselinux-python state=present
+  when: ansible_pkg_mgr == "yum"
 
-- name: if redhat, include family specific task file
-  include: "redhat/main.yml"
-  when: ansible_os_family | lower == 'redhat'
+- name: copy scripts to server
+  copy: src="../files/check-java-version.sh"  dest="{{ java_download_path }}/"  mode="a+x"
 
-- name: check if operating system is suported
-  fail:
-    msg: "The operating system ({{ ansible_os_family }}) of the target machine ({{ inventory_hostname }}) is not currently supported."
-  when: oracle_java_os_supported is not defined or not oracle_java_os_supported
+- name: check if specific version of Oracle JDK is installed?
+  shell: LC_ALL="en_US.UTF-8"  {{ java_download_path }}/check-java-version.sh  "{{ jdk_version }}"
+  register: jdk_info
+  changed_when: false
+  failed_when: jdk_info.rc > 0
+
+#- debug: var=jdk_info
+
+- include: install.yml
+  when: (jdk_info.stdout|from_json).not_found

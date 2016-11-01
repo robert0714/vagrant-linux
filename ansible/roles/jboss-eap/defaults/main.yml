@@ -61,10 +61,13 @@ nexus_password: ""
 nexus_host: ""
 nexus_repository_id: ""
 
+gi_dir: "/tmp"
 
-jboss_eap_golden_image_name: "jboss-eap-7.0.0" 
-jboss_eap_instance_name: "petclinic" 
-jboss_eap_instance_standalone_file: "standalone-full-ha.xml" 
-jboss_eap_instance_port_offset: "1000" 
-app_mvn_list: [ { g: "com.redhat.jboss", a: "petclinic.war", v: "1.0", e: "war" } ] 
+jboss_eap_golden_image_name: jboss-eap-7.0 
+jboss_eap_instance_name: "petclinic"
+jboss_eap_instance_standalone_file: "standalone-full-ha.xml"
+jboss_eap_instance_port_offset: "1000"
+app_mvn_list: [ { g: "com.redhat.jboss", a: "petclinic.war", v: "1.0", e: "war" } ]
 cli_list: { "add_datasource.cli", "add_mod_cluster_7.cli"}
+jboss_eap7_src: 'https://doc-08-58-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/q6i8phootqo6ln88h5rl456556rcocsa/1477965600000/11471549429671539946/*/0B-WYnM98guUOd3FrMlZRNUVrRFk?e=download'
+ 

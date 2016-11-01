@@ -8,5 +8,5 @@ docker_cfg: docker.cfg
 docker_cfg_dest: /etc/default/docker
 centos_docker_cfg: centos-docker.cfg
 centos_docker_cfg_dest: /lib/systemd/system/docker.service
-jboss_eap7_src:https://doc-08-58-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/q6i8phootqo6ln88h5rl456556rcocsa/1477965600000/11471549429671539946/*/0B-WYnM98guUOd3FrMlZRNUVrRFk?e=download
-jboss_eap7_name:jboss-eap-7.0.0.zip
+
+

@@ -1,0 +1,31 @@
+- name: (00) Fail for missing "download_dir"
+  fail: msg="This role requires 'download_dir' to be set and non empty. Please refer to the README."
+  when: download_dir is not defined or download_dir == ''
+
+- name: (00) Install Java and basic Debian dependencies
+  become: true
+  apt: name={{ item }} state=present
+  with_items:
+   - unzip
+   
+   - rsync
+   # for netstat
+   - net-tools
+   # for pstree
+   - psmisc
+   # for vimdiff
+   - vim
+ 
+
+# Set in the DEV environment during the first setup
+- name: (00) Copy .bashrc
+  template:
+    src: .bashrc.j2
+    dest: "{{ ansible_env.HOME}}/.bashrc"
+  register: bashrc_uploaded
+
+# Set in the DEV environment during the first setup
+- name: (00) Set server timezone
+  become: true
+  when: bashrc_uploaded.changed == True and ( env is not defined or env != 'docker' )
+  command: "timedatectl set-timezone {{ timezone }}"
