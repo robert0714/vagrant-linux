@@ -4,7 +4,7 @@
 java_pkg_name: java-1.8.0-openjdk-devel
 
 # Timezone for the hosts and the logs
-timezone: Europe/Berlin
+timezone: Asia/Taipei
 
 # Directory containing all downloaded artifacts on the remote host
 download_dir: '/tmp'
