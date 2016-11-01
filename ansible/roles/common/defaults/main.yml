@@ -1,5 +1,5 @@
 hosts: [
-  { host_ip: "192.168.57.27", host_name: "cd"},
+  { host_ip: "192.168.57.27", host_name: "eip"},
   { host_ip: "192.168.57.31", host_name: "prod"},
   { host_ip: "192.168.57.32", host_name: "logging"},
   { host_ip: "192.168.57.41", host_name: "serv-disc-01"},
