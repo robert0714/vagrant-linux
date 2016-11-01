@@ -3,17 +3,10 @@
 # service-disc03 (192.168.57.43 )  etcd 時需要改變
 # centos的{{ ansible_eth1.ipv4.address }}確實可以動態抓到所登入機器的ip ,Ubuntu無法使用，只能用 "{{ facter_ipaddress_eth1 }}"是否能使用
 ip:  "{{ facter_ipaddress_eth1 }}"
-consul_extra: ""
-proxy_url: http://{{ facter_ipaddress_eth1 }}
-proxy_url2: http://{{ facter_ipaddress_eth1 }}
-registry: 192.168.57.27:5000
-registry_url: 192.168.57.27:5000/
-jenkins_ip: 192.168.57.27
 debian_version: trusty
 docker_cfg: docker.cfg
 docker_cfg_dest: /etc/default/docker
 centos_docker_cfg: centos-docker.cfg
 centos_docker_cfg_dest: /lib/systemd/system/docker.service
-elk_ip: 192.168.57.32
-jenkins_version: 1.642.4
-registry_host_dir: /vagrant/registry
+jboss_eap7_src:https://doc-08-58-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/q6i8phootqo6ln88h5rl456556rcocsa/1477965600000/11471549429671539946/*/0B-WYnM98guUOd3FrMlZRNUVrRFk?e=download
+jboss_eap7_name:jboss-eap-7.0.0.zip
