@@ -1,4 +1,5 @@
 ---
+jboss_eap_golden_image_name: 'jboss-eap-7.0.0'
 
 # Used java version: Java 8 JDK. See recommendation https://access.redhat.com/solutions/18259
 java_pkg_name: java-1.8.0-openjdk-devel
