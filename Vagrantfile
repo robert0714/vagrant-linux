@@ -2,13 +2,13 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  
+if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+   config.vm.synced_folder ".", "/vagrant", mount_options: ["dmode=700,fmode=600"]
+else
+   config.vm.synced_folder ".", "/vagrant"
+end  
   config.vm.define "eip" do |d| 
-    if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
-      d.vm.synced_folder ".", "/vagrant", mount_options: ["dmode=700,fmode=600"]
-    else
-      d.vm.synced_folder ".", "/vagrant"
-    end
+    
     d.vm.box ="ubuntu/trusty64"
 #    d.vm.box = "centos/7" 
     d.vm.hostname = "eip"
