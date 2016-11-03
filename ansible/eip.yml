@@ -3,9 +3,10 @@
   serial: 1
   roles:
     - common
-    - oracle-java-develop
+    - maintain-user
+#    - oracle-java-develop
 #    - docker
 #    - docker-compose
-    - jboss-common
-    - jboss-eap
+#    - jboss-common
+ #   - jboss-eap
 #    - mini-desktop
