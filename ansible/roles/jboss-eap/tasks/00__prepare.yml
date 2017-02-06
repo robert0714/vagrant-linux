@@ -62,4 +62,5 @@
   get_url:
     url:     "{{ jboss_eap7_src }}"
     dest:    "{{ gi_dir }}/{{ jboss_eap_golden_image_name }}.zip"
- 
+    owner: "{{ jboss.user }}"
+    group: "{{ jboss.group }}"
