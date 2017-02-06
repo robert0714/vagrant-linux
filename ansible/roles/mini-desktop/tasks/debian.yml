@@ -19,14 +19,14 @@
 
 - name: ubuntu-mate-core is present
   apt:
-    name: mate-desktop-environment-core
+    name:lightdm
     force: yes
   ignore_errors: yes
   tags: [mini-desktop]
 
 - name: ubuntu-mate-desktop is present
   apt:
-    name: mate-themes
+    name: lightdm-gtk-greeter
     force: yes
   ignore_errors: yes
   tags: [mini-desktop]
@@ -37,4 +37,5 @@
     name: xrdp
     state: restarted
   tags: [mini-desktop]
+  
   
