@@ -10,6 +10,20 @@
   ignore_errors: yes
   tags: [mini-desktop]
   
+- name:  gnome-classic-session is present
+  action: apt-get  name="{{ item }}" state=latest
+  with_items:
+     - gnome-classic-session
+     - gnome-terminal
+     - nautilus-open-terminal
+     - control-center
+     - liberation-mono-fonts
+     - xrdp
+     - tigervnc-server
+  ignore_errors: yes
+  tags: [mini-desktop]
+
+
 - name: xrdp is present
   apt:
     name: xrdp
