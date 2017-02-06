@@ -1,3 +1,13 @@
+- apt_repository:
+    repo: 'ppa:ubuntu-mate-dev/ppa'
+  ignore_errors: yes
+  tags: [mini-desktop]
+  
+ - apt_repository:
+    repo: 'ppa:ubuntu-mate-dev/trusty-mate'
+  ignore_errors: yes
+  tags: [mini-desktop]
+  
 - name: xrdp is present
   apt:
     name: xrdp
