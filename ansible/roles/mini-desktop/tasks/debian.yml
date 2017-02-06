@@ -19,14 +19,14 @@
 
 - name: ubuntu-mate-core is present
   apt:
-    name: ubuntu-mate-core
+    name: mate-desktop-environment-core
     force: yes
   ignore_errors: yes
   tags: [mini-desktop]
 
 - name: ubuntu-mate-desktop is present
   apt:
-    name: ubuntu-mate-desktop
+    name: mate-themes
     force: yes
   ignore_errors: yes
   tags: [mini-desktop]
