@@ -19,7 +19,7 @@
 
 - name: ubuntu-mate-core is present
   apt:
-    name:lightdm
+    name: lightdm
     force: yes
   ignore_errors: yes
   tags: [mini-desktop]
