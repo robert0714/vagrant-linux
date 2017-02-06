@@ -1,0 +1,28 @@
+- name: xrdp is present
+  apt:
+    name: xrdp
+    force: yes
+  ignore_errors: yes
+  tags: [mini-desktop]
+
+- name: ubuntu-mate-core is present
+  apt:
+    name: ubuntu-mate-core
+    force: yes
+  ignore_errors: yes
+  tags: [mini-desktop]
+
+- name: ubuntu-mate-desktop is present
+  apt:
+    name: ubuntu-mate-desktop
+    force: yes
+  ignore_errors: yes
+  tags: [mini-desktop]
+
+
+- name: Ububtu xrdp service is restarted
+  service:
+    name: xrdp
+    state: restarted
+  tags: [mini-desktop]
+  
