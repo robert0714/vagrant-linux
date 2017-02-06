@@ -13,8 +13,8 @@
 - name:  gnome-classic-session is present
   apt: name="{{ item }}" state=installed 
   with_items:
-     - gnome-classic-session
-     - gnome-terminal
+     - vnc4server
+     - xbase-clients
      - nautilus-open-terminal
      - control-center
      - liberation-mono-fonts
