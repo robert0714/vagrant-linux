@@ -1,9 +1,11 @@
-- apt_repository:
+- name: add repository 'ppa:ubuntu-mate-dev/ppa'
+  apt_repository:
     repo: 'ppa:ubuntu-mate-dev/ppa'
   ignore_errors: yes
   tags: [mini-desktop]
   
- - apt_repository:
+- name: add repository 'ppa:ubuntu-mate-dev/trusty-mate'
+  apt_repository:
     repo: 'ppa:ubuntu-mate-dev/trusty-mate'
   ignore_errors: yes
   tags: [mini-desktop]
