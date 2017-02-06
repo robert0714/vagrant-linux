@@ -22,27 +22,16 @@
      - tigervnc-server
   ignore_errors: yes
   tags: [mini-desktop]
-
-- name: xrdp is present
-  apt:
-    name: xrdp
-    force: yes
+  
+- name: 設定 selinux 給予權限
+  shell: chcon --type=bin_t /usr/sbin/xrdp
   ignore_errors: yes
-  tags: [mini-desktop]
+  tags:  [mini-desktop]
 
-- name: ubuntu-mate-core is present
-  apt:
-    name: lightdm
-    force: yes
+- name: 設定 selinux 給予權限
+  shell: chcon --type=bin_t /usr/sbin/xrdp-sesman
   ignore_errors: yes
-  tags: [mini-desktop]
-
-- name: ubuntu-mate-desktop is present
-  apt:
-    name: lightdm-gtk-greeter
-    force: yes
-  ignore_errors: yes
-  tags: [mini-desktop]
+  tags:  [mini-desktop]
 
 
 - name: Ububtu xrdp service is restarted
