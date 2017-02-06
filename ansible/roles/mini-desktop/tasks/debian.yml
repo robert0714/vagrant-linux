@@ -11,7 +11,7 @@
   tags: [mini-desktop]
   
 - name:  gnome-classic-session is present
-  action: apt-get  name="{{ item }}" state=latest
+  apt: name="{{ item }}" state=installed 
   with_items:
      - gnome-classic-session
      - gnome-terminal
@@ -22,7 +22,6 @@
      - tigervnc-server
   ignore_errors: yes
   tags: [mini-desktop]
-
 
 - name: xrdp is present
   apt:
